@@ -1,0 +1,19 @@
+{
+  "name": "url_short",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Pranav kamble",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.2",
+    "nanoid": "^5.0.7",
+    "nodemon": "^3.1.7"
+  }
+}
