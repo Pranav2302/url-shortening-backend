@@ -12,6 +12,10 @@ connectMongoDb(process.env.MONGODB)
 
 app.use(express.json())
 
+app.get('/', (req, res) => {
+    res.send("Welcome to the URL Shortener API");
+});
+
 app.use('/url',urlRoute);
 
 app.get('/:shortid',async (req,res)=>{
