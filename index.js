@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { connectMongoDb } from './connect.js';
 import urlRoute from './routes/urls.js';
 import URL from "./models/users.models.js"
+import cors from 'cors';
 dotenv.config();
 
 const app = express();
@@ -10,6 +11,13 @@ const app = express();
 connectMongoDb(process.env.MONGODB)
 .then(()=>console.log("Connecting to mongoDb"))
 
+const corsOptions = {
+    origin: 'https://url-shortening-backend-seven.vercel.app', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+  };
+  
+  app.use(cors(corsOptions))
 app.use(express.json())
 
 // app.get('/', (req, res) => {
