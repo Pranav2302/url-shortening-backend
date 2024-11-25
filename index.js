@@ -12,7 +12,7 @@ connectMongoDb(process.env.MONGODB)
 .then(()=>console.log("Connecting to mongoDb"))
 
 const corsOptions = {
-    origin: 'https://url-shortening-backend-seven.vercel.app', 
+    origin: ['https://url-shortening-backend-seven.vercel.app','http://localhost:3000'], 
     methods: ['GET', 'POST', 'PUT', 'DELETE'], 
     allowedHeaders: ['Content-Type', 'Authorization'], 
   };
