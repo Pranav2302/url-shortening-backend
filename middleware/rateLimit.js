@@ -23,7 +23,7 @@ const redis = new Redis({
 // Configure rate limiter with enhanced logging
 export const ratelimit = new Ratelimit({
   redis,
-  limiter: Ratelimit.slidingWindow(10, '60 s'), // 1 requests per 10 seconds
+  limiter: Ratelimit.slidingWindow(10, '60 s'), // 10 requests per 60 seconds
   analytics: true,
   prefix: '@upstash/ratelimit',
 });
