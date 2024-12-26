@@ -3,11 +3,8 @@ import URL from "../models/users.models.js";
 import { ratelimit } from "../middleware/rateLimit.js";
 
 function isValidUrl(urlstring){
-    try {
-        new globalThis.URL(urlstring)
-    } catch (error) {
-        return false;
-    }
+   const urlpattern = /^(https?:\/\/)([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?$/;
+   return urlpattern.test(urlstring);
 
 }
 
@@ -49,8 +46,11 @@ async function handelNewUrl(req, res) {
         if (!body.url) {
             return res.status(400).json({ error: "URL is required, please enter!" });
         }
-        //url validation 
-        if(!isValidUrl(body.url)){
+        //url validation
+        console.log('Validating URL:',body.url);
+        const isValid = isValidUrl(body.url); 
+
+        if(!isValid){
             return res.status(400).json({
                 error:"Invalid Url Provided. Please Enter a Valid URL"
             });
