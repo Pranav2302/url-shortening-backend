@@ -2,8 +2,18 @@ import { nanoid } from "nanoid";
 import URL from "../models/users.models.js";
 import { ratelimit } from "../middleware/rateLimit.js";
 
+function isValidUrl(string){
+    try {
+        const url = new URL(string)
+        return url.protocol === 'http' || url.protocol === 'https';
+    } catch (error) {
+        return false;
+    }
+
+}
+
 async function handelNewUrl(req, res) {
-    // Improved IP detection
+    // IP detection
     const ip = 
         req.headers['x-forwarded-for'] || 
         req.ip || 
@@ -36,10 +46,16 @@ async function handelNewUrl(req, res) {
         }
 
         const body = req.body;
+        //url taken 
         if (!body.url) {
             return res.status(400).json({ error: "URL is required, please enter!" });
         }
-
+        //url validation 
+        if(!isValidUrl(body.url)){
+            return res.status(400).json({
+                error:"Invalid Url Provided. Please Enter a Valid URL"
+            });
+        }
         const shortid = nanoid(8);
         await URL.create({
             short_id: shortid,
