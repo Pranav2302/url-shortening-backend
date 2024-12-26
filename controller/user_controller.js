@@ -2,10 +2,9 @@ import { nanoid } from "nanoid";
 import URL from "../models/users.models.js";
 import { ratelimit } from "../middleware/rateLimit.js";
 
-function isValidUrl(string){
+function isValidUrl(urlstring){
     try {
-        const url = new URL(string)
-        return url.protocol === 'http' || url.protocol === 'https';
+        new globalThis.URL(urlstring)
     } catch (error) {
         return false;
     }
