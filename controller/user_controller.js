@@ -2,11 +2,11 @@ import { nanoid } from "nanoid";
 import URL from "../models/users.models.js";
 import { ratelimit } from "../middleware/rateLimit.js";
 
-function isValidUrl(urlstring){
-   const urlpattern = /^(https?:\/\/)([\w-]+\.)+[\w-]+(\/[\w- ./?%&=]*)?$/;
+function isValidUrl(urlstring) {
+   const urlpattern = /^(https?:\/\/)[\w.-]+\.[a-z]{2,6}([\/\w .?%&=~-]*)?$/i;
    return urlpattern.test(urlstring);
-
 }
+
 
 async function handelNewUrl(req, res) {
     // IP detection
