@@ -9,7 +9,8 @@ dotenv.config();
 const app = express();
 
 connectMongoDb(process.env.MONGODB)
-.then(()=>console.log("Connecting to mongoDb"))
+.then(()=>console.log("Connected to MongoDB successfully"))
+.catch((error)=>console.error("MongoDB connection failed:", error))
 
 const corsOptions = {
     origin: ['https://bittly.vercel.app','http://localhost:3000'], 
